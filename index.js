@@ -5,13 +5,51 @@
 
 // Dependencies
     var http = require('http');
+    var https = require('https');
     var url = require('url');
     var StringDecoder = require('string_decoder').StringDecoder;
     var config = require('./config');
+    var fs = require('fs');
 // Dependencies
 
-// The server should respond to all request with a string
-    var server = http.createServer(function(req, res){
+// Instantiate the HTTP server
+    var httpServer = http.createServer(function(req, res){
+       unifiedServer(req, res);         
+    });
+// Instantiate the HTTP server
+
+// Start the HTTP server
+    httpServer.listen(config.httpPort, function(){
+        console.log(
+            "the server is listening on port " +config.httpPort+
+            " in " +config.envName+ " mode"
+            )
+        ;
+    });
+// Start the HTTP server
+
+// Instantiate the HTTPS server
+    var httpsServerOptions = {
+        'key' : fs.readFileSync('./https/key.pem'),
+        'cert' : fs.readFileSync('./https/cert.pem') 
+    };
+    var httpsServer = https.createServer(httpsServerOptions, function(req, res){
+       unifiedServer(req, res);         
+    });
+// Instantiate the HTTPS server
+
+// Start the HTTPS server
+    httpsServer.listen(config.httpsPort, function(){
+        console.log(
+            "the server is listening on port " +config.httpsPort+
+            " in " +config.envName+ " mode"
+            )
+        ;
+    });
+// Start the HTTPS server
+
+// All the server logic for both the http and https server
+    var unifiedServer = function(req, res){
         
         // Get the URL and parse it
             // url module calls queryString module (parameter set to [true] in [url.parse()]) 
@@ -103,19 +141,9 @@
                 });
             // on the ['end'] event
         // Get the payload if any
-        
-    });
-// The server should respond to all request with a string
 
-// Start the server
-    server.listen(config.port, function(){
-        console.log(
-            "the server is listening on port " +config.port+
-            " in " +config.envName+ " mode"
-            )
-        ;
-    });
-// Start the server, and have it listen on port 3000
+    };
+// All the server logic for both the http and https server
 
 // Define the handlers (everything parsed from request will be sent to a handler as [data])
     
