@@ -28,14 +28,15 @@
         // Get the HTTP Method
             var method = req.method.toLowerCase();
         // Get the HTTP Method
+        // Get the headers as an Object
+            var headers = req.headers
+        // Get the headers as an Object
         // Send the response
             res.end('\nHello World\n');
         // Send the response
         // Log the request
             console.log(
-                'Request received on path: ' +trimmedPath+
-                ', with method: ' +method+
-                ', with these query string parameters: ', queryStringObject
+                headers
                 )
             ;
         // Log the request
