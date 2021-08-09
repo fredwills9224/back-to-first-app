@@ -81,6 +81,7 @@
                                 var payloadString = JSON.stringify(payload)
                             // Convert the payload to a string
                             // Send the response
+                                res.setHeader('Content-Type', 'application/json');
                                 res.writeHead(statusCode);
                                 res.end(payloadString);
                             // Send the response
