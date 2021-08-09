@@ -22,11 +22,14 @@
                 var trimmedPath = path.replace(/^\/+|\/+$/g,'');
             // string replacement using regex
         // Get the path
+        // Get the HTTP Method
+            var method = req.method.toLowerCase();
+        // Get the HTTP Method
         // Send the response
             res.end('\nHello World\n');
         // Send the response
         // Log the request
-            console.log('Request received on path: ' +trimmedPath);
+            console.log('Request received on path: ' +trimmedPath+ ' with method: ' +method);
         // Log the request
 
     });
