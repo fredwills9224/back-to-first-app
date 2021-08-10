@@ -148,13 +148,11 @@
 // Define the handlers (everything parsed from request will be sent to a handler as [data])
     
     var handlers = {};
-    // Sample handler
-        handlers.sample = function(data, callback){
-            // Callback a http status code, and a payload object
-                callback(406, {'name' : 'sample handler'} );
-            // Callback a http status code, and a payload object
+    // Ping handler
+        handlers.ping = function(data, callback){
+            callback(200);
         };
-    // Sample handler
+    // Ping handler
 
     // Not found handler
         handlers.notFound = function(data, callback){
@@ -168,6 +166,6 @@
 
 // Define a request router
     var router = {
-        'sample' : handlers.sample
+        'ping' : handlers.ping
     }
 // Define a request router
