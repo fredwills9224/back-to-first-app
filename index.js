@@ -14,9 +14,38 @@
 // Dependencies
 
 // Testing
-    _data.create('test', 'newFile', {'foo': 'bar'}, function(err){
-        console.log('this was the error', err);
-    });
+
+    // Create
+        // _data.create('test', 'newFile', {'foo': 'bar'}, function(err){
+        //     console.log('this was the error', err);
+        // });
+    // Create
+    
+    // Read
+        // existing files
+            // _data.read('test', 'newFile', function(err, data){
+            //     
+            //     console.log(
+            //         'this was the error', err,
+            //         ' and this is the data', data
+            //         )
+            //     ;
+            //         
+            // });
+        // existing files
+        // non existing files
+            // _data.read('test', 'newFile1', function(err, data){
+            // 
+            //     console.log(
+            //         'this was the error', err,
+            //         ' and this is the data', data
+            //         )
+            //     ;
+            // 
+            // });
+        // non existing files
+    // Read
+
 // Testing
 
 // Instantiate the HTTP server
