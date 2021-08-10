@@ -10,7 +10,14 @@
     var StringDecoder = require('string_decoder').StringDecoder;
     var config = require('./config');
     var fs = require('fs');
+    var _data = require('./lib/data');
 // Dependencies
+
+// Testing
+    _data.create('test', 'newFile', {'foo': 'bar'}, function(err){
+        console.log('this was the error', err);
+    });
+// Testing
 
 // Instantiate the HTTP server
     var httpServer = http.createServer(function(req, res){
