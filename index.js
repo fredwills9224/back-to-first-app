@@ -20,7 +20,7 @@
         //     console.log('this was the error', err);
         // });
     // Create
-    
+
     // Read
         // existing files
             // _data.read('test', 'newFile', function(err, data){
@@ -45,6 +45,15 @@
             // });
         // non existing files
     // Read
+
+    // Update
+
+        // table = 'test', objectBeingUpdated = 'newFile', updatedObject = {'fizz' : 'buzz'}
+        _data.update('test', 'newFile', {'fizz': 'buzz'}, function(err, data){
+            console.log('this was the error', err, 'and this was the data', data);
+        });
+
+    // Update
 
 // Testing
 
