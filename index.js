@@ -16,9 +16,9 @@
 // Testing
 
     // Create
-        _data.create('test', 'newFile', {'foo': 'bar'}, function(err){
-            console.log('this was the error', err);
-        });
+        // _data.create('test', 'newFile', {'foo': 'bar'}, function(err){
+        //     console.log('this was the error :', err);
+        // });
     // Create
 
     // Read
@@ -26,8 +26,8 @@
             // _data.read('test', 'newFile', function(err, data){
             //     
             //     console.log(
-            //         'this was the error', err,
-            //         ' and this is the data', data
+            //         'this was the error :', err,
+            //         ' and this is the data :', data
             //         )
             //     ;
             //         
@@ -37,8 +37,8 @@
             // _data.read('test', 'newFile1', function(err, data){
             // 
             //     console.log(
-            //         'this was the error', err,
-            //         ' and this is the data', data
+            //         'this was the error :', err,
+            //         ' and this is the data :', data
             //         )
             //     ;
             // 
@@ -50,14 +50,14 @@
 
           // table = 'test', objectBeingUpdated = 'newFile', updatedObject = {'fizz' : 'buzz'}
         // _data.update('test', 'newFile', {'fizz': 'buzz'}, function(err, data){
-        //     console.log('this was the error', err, 'and this was the data', data);
+        //     console.log('this was the error :', err, 'and this was the data :', data);
         // });
 
     // Update
 
     // Delete
         // _data.delete('test', 'newFile', function(err, data){
-        //     console.log('this was the error', err, 'and this was the data', data);
+        //     console.log('this was the error :', err, 'and this was the data :', data);
         // });
     // Delete
 
