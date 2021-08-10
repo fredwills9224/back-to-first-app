@@ -8,9 +8,10 @@
     var https = require('https');
     var url = require('url');
     var StringDecoder = require('string_decoder').StringDecoder;
-    var config = require('./config');
+    var config = require('./lib/config');
     var fs = require('fs');
     var handlers = require('./lib/handlers');
+    var helpers = require('./lib/helpers');
 // Dependencies
 
 // Testing
@@ -148,7 +149,7 @@
                             'queryStringObject' : queryStringObject,
                             'method' : method,
                             'headers' : headers,
-                            'payload' : buffer
+                            'payload' : helpers.parseJsonToObject(buffer) // making sure [data.payload] is an object and not a raw [buffer]
                         };
                     // Construct the data object to send to the handler
                     // Route the request to the handler specified in the router
