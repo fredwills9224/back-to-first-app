@@ -10,7 +10,7 @@
     var StringDecoder = require('string_decoder').StringDecoder;
     var config = require('./config');
     var fs = require('fs');
-    var _data = require('./lib/data');
+    var handlers = require('./lib/handlers');
 // Dependencies
 
 // Testing
@@ -196,27 +196,9 @@
     };
 // All the server logic for both the http and https server
 
-// Define the handlers (everything parsed from request will be sent to a handler as [data])
-    
-    var handlers = {};
-    // Ping handler
-        handlers.ping = function(data, callback){
-            callback(200);
-        };
-    // Ping handler
-
-    // Not found handler
-        handlers.notFound = function(data, callback){
-            // Callback a http status code notFound
-                callback(404);
-            // Callback a http status code notFound
-        };
-    // Not found handler
-
-// Define the handlers (everything parsed from request will be sent to a handler as [data])
-
 // Define a request router
     var router = {
-        'ping' : handlers.ping
+        'ping' : handlers.ping,
+        'users' : handlers.users
     }
 // Define a request router
