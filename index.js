@@ -16,9 +16,9 @@
 // Testing
 
     // Create
-        // _data.create('test', 'newFile', {'foo': 'bar'}, function(err){
-        //     console.log('this was the error', err);
-        // });
+        _data.create('test', 'newFile', {'foo': 'bar'}, function(err){
+            console.log('this was the error', err);
+        });
     // Create
 
     // Read
@@ -56,9 +56,9 @@
     // Update
 
     // Delete
-        _data.delete('test', 'newFile', function(err, data){
-            console.log('this was the error', err, 'and this was the data', data);
-        });
+        // _data.delete('test', 'newFile', function(err, data){
+        //     console.log('this was the error', err, 'and this was the data', data);
+        // });
     // Delete
 
 // Testing
