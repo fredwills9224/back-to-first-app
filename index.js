@@ -15,13 +15,13 @@
 
 // Testing
 
-    // Create
+    // lib.create
         // _data.create('test', 'newFile', {'foo': 'bar'}, function(err){
         //     console.log('this was the error :', err);
         // });
-    // Create
+    // lib.create
 
-    // Read
+    // lib.read.test
         // existing files
             // _data.read('test', 'newFile', function(err, data){
             //     
@@ -44,22 +44,22 @@
             // 
             // });
         // non existing files
-    // Read
+    // lib.read.test
 
-    // Update
+    // lib.update.test
 
           // table = 'test', objectBeingUpdated = 'newFile', updatedObject = {'fizz' : 'buzz'}
         // _data.update('test', 'newFile', {'fizz': 'buzz'}, function(err, data){
         //     console.log('this was the error :', err, 'and this was the data :', data);
         // });
 
-    // Update
+    // lib.update.test
 
-    // Delete
+    // lib.delete.test
         // _data.delete('test', 'newFile', function(err, data){
         //     console.log('this was the error :', err, 'and this was the data :', data);
         // });
-    // Delete
+    // lib.delete.test
 
 // Testing
 
