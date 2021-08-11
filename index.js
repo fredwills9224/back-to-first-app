@@ -181,7 +181,7 @@
                                         'Request received on path: ' +trimmedPath+
                                         ', with method: ' +method+
                                         ', with these query string parameters: ', 
-                                        queryStringObject, headers, buffer,
+                                        queryStringObject, headers,
                                         statusCode,payloadString
                                     )
                                 ;
