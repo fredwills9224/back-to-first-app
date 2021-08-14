@@ -1,5 +1,5 @@
 /*
- * Primary file for the API
+ * Primary [file] for the API
  * 
 */
 
@@ -64,13 +64,13 @@
 
 // Testing
 
-// Instantiate the HTTP server
+// Instantiate the [httpServer]
     var httpServer = http.createServer(function(req, res){
        unifiedServer(req, res);         
     });
-// Instantiate the HTTP server
+// Instantiate the [httpServer]
 
-// Start the HTTP server
+// Start the [httpServer]
     httpServer.listen(config.httpPort, function(){
         console.log(
             "the server is listening on port " +config.httpPort+
@@ -78,9 +78,9 @@
             )
         ;
     });
-// Start the HTTP server
+// Start the [httpServer]
 
-// Instantiate the HTTPS server
+// Instantiate the [httpsServer]
     var httpsServerOptions = {
         'key' : fs.readFileSync('./https/key.pem'),
         'cert' : fs.readFileSync('./https/cert.pem') 
@@ -88,9 +88,9 @@
     var httpsServer = https.createServer(httpsServerOptions, function(req, res){
        unifiedServer(req, res);         
     });
-// Instantiate the HTTPS server
+// Instantiate the [httpsServer]
 
-// Start the HTTPS server
+// Start the [httpsServer]
     httpsServer.listen(config.httpsPort, function(){
         console.log(
             "the server is listening on port " +config.httpsPort+
@@ -98,34 +98,35 @@
             )
         ;
     });
-// Start the HTTPS server
+// Start the [httpsServer]
 
-// All the server logic for both the http and https server
+// All the server logic for both the [httpServer] and [httpsServer]
     var unifiedServer = function(req, res){
         
-        // Get the URL and parse it
+        // Get the [url] and parse it
             // url module calls queryString module (parameter set to [true] in [url.parse()]) 
             // both are used to create an object with alot of keys containing metadata
             var parsedUrl = url.parse(req.url, true);
-        // Get the URL and parse it
-        // Get the path
+        // Get the [url] and parse it
+        // Get the [path]
             var path = parsedUrl.pathname;
             // string replacement using regex
                 var trimmedPath = path.replace(/^\/+|\/+$/g,'');
             // string replacement using regex
-        // Get the path
-        // Get the query string as an object
+        // Get the [path]
+        // Get the [querystringObject]
             var queryStringObject = parsedUrl.query;
-        // Get the query string as an object
-        // Get the HTTP Method
+        // Get the [querystringObject]
+        // Get the [method]
             var method = req.method.toLowerCase();
-        // Get the HTTP Method
-        // Get the headers as an Object
+        // Get the [method]
+        // Get the [headers] as an Object
             var headers = req.headers
-        // Get the headers as an Object
-        // Get the payload if any
+        // Get the [headers] as an Object
+        // Get the [payload] if any
+
             var decoder = new StringDecoder('utf-8');
-            var buffer = ''; // (payload) or collection of incoming streams from [decoder] 
+            var buffer = ''; // [payload] or collection of incoming streams from [decoder] 
             // on the ['data'] event that is omitted when [decoder] has appended all streams of [data] to [buffer]
                 req.on('data', function(data){
                     buffer += decoder.write(data);
@@ -135,15 +136,15 @@
                 req.on('end', function(){
                     
                     buffer += decoder.end();
-                    // Choose the handler this request should go to
+                    // Choose the handler this [req]uest should go to
                         chosenHandler = 
-                            // if [path] is not undefined set [chosenHandler] to [handler.[path] or to [handlers.notFound]
+                            // if [path] is not undefined set [chosenHandler] to [handlers.[path]] or to [handlers.notFound]
                                 typeof(router[trimmedPath]) !== 'undefined' ? 
                                 router[trimmedPath] : handlers.notFound
-                            // if [path] is not undefined set [chosenHandler] to [handler.[path] or to [handlers.notFound]
+                            // if [path] is not undefined set [chosenHandler] to [handlers.[path]] or to [handlers.notFound]
                         ; 
-                    // Choose the handler this request should go to
-                    // Construct the data object to send to the handler
+                    // Choose the handler this [req]uest should go to
+                    // Construct the [data] object to send to the handler
                         var data = {
                             'trimmedPath' : trimmedPath,
                             'queryStringObject' : queryStringObject,
@@ -151,32 +152,32 @@
                             'headers' : headers,
                             'payload' : helpers.parseJsonToObject(buffer) // making sure [data.payload] is an object and not a raw [buffer]
                         };
-                    // Construct the data object to send to the handler
-                    // Route the request to the handler specified in the router
+                    // Construct the [data] object to send to the handler
+                    // Route the [req]uest to the handler specified in the [router]
                         
                         chosenHandler(data, function(statusCode, payload){
                             
-                            // Use the status code called back by the handler, or default to 200
+                            // Use the [statusCode] called back by the handler, or default to 200
                                 statusCode = 
                                     typeof(statusCode) == 'number' ?
                                     statusCode : 200
                                 ;
-                            // Use the status code called back by the handler, or default to 200
-                            // Use the payload called back by the handler, or default to empty object
+                            // Use the [statusCode] called back by the handler, or default to 200
+                            // Use the [payload] called back by the handler, or default to empty object
                                 payload = 
                                     typeof(payload) == 'object' ?
                                     payload : {}
                                 ;
-                            // Use the payload called back by the handler, or default to empty object
-                            // Convert the payload to a string
+                            // Use the [payload] called back by the handler, or default to empty object
+                            // Convert the payload to a string set to [payloadString]
                                 var payloadString = JSON.stringify(payload)
-                            // Convert the payload to a string
-                            // Send the response
+                            // Convert the payload to a string set to [payloadString]
+                            // Send the [res]ponse
                                 res.setHeader('Content-Type', 'application/json');
                                 res.writeHead(statusCode);
                                 res.end(payloadString);
-                            // Send the response
-                            // Log the request
+                            // Send the [res]ponse
+                            // Log the [req]uest
                                 console.log(
                                         'Request received on path: ' +trimmedPath+
                                         ', with method: ' +method+
@@ -185,21 +186,23 @@
                                         statusCode,payloadString
                                     )
                                 ;
-                            // Log the request
+                            // Log the [req]uest
                         });
 
-                    // Route the request to the handler specified in the router
+                    // Route the [req]uest to the handler specified in the [router]
     
                 });
             // on the ['end'] event
-        // Get the payload if any
+
+        // Get the [payload] if any
 
     };
-// All the server logic for both the http and https server
+// All the server logic for both the [httpServer] and [httpsServer]
 
-// Define a request router
+// Define a [req]uest [router]
     var router = {
         'ping' : handlers.ping,
-        'users' : handlers.users
+        'users' : handlers.users,
+        'tokens' : handlers.tokens
     }
-// Define a request router
+// Define a [req]uest [router]
